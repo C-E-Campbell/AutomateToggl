@@ -1,10 +1,11 @@
 const fs = require('fs');
 const csv = require('csv-parser');
 const filePath = "../CSV_Goes_Here/test.csv";
+const axios = require("axios");
 const results = [];
 
 module.exports = {
-    parseCSV() {
+    parseOpenAirCsv() {
         fs.createReadStream(filePath)
           .on('error', () => {
             console.log('there is an error');
