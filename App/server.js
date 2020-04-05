@@ -1,16 +1,17 @@
 const express = require("express");
+var path = require('path');
 const cron = require("node-cron");
 const lib = require("./functions");
 
 const app = express();
 
-cron.schedule("* * * * *", function() {
-  lib.parseOpenAirCsv();
-});
+app.use(express.static('public'));
 
-app.get("/", (rea, res) => {
-  res.send("Node app is running!")
-});
+// cron.schedule("0 10,16 * * 1-5", function() {
+//   lib.parseOpenAirCsv();
+// });
+
+
 
 app.listen(8899, () => {
   console.log("App is running on port 8899")
