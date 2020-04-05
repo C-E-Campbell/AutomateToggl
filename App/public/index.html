@@ -9,15 +9,15 @@
     <title>Import To Toggl</title>
 </head>
 <body>
+    
     <header>
         <img src="./logo-big.webp" alt="rfsmart">
     </header>
     
     <h1>Import To Toggl App Is Running</h1>
-    <form action="/uploadProfilePicture" 
-      enctype="multipart/form-data" method="POST"> 
-       
-        <input type="file" name="mypic" required value="Select .csv"/> 
+
+    <form action="/uploadcsv" enctype="multipart/form-data" method="POST"> 
+        <input type="file" name="csv" required /> 
         <button type="submit">Upload</button> 
     </form> 
     
