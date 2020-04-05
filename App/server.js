@@ -9,8 +9,7 @@ app.use(express.static('public'));
 // cron.schedule("0 10,16 * * 1-5", function() {
 //   lib.parseOpenAirCsv();
 // });
-lib.getAllProjects();
-lib.parseOpenAirCsv();
+
 
 
 app.listen(8899, () => {
