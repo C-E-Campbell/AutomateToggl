@@ -10,6 +10,6 @@ app.use(express.static('public'));
 //   lib.parseOpenAirCsv();
 // });
 
-app.listen(8899, () => {
-  console.log("App is running on port 8899")
+app.listen(8786, () => {
+  console.log("App is running on port 8786")
 });
