@@ -10,7 +10,7 @@ app.use(express.static("public"));
 // });
 
 lib.parseOpenAirCsv();
-lib.getAllProjects();
+lib.updateToggl();
 
 app.listen(8786, () => {
   console.log("App is running on port 8786");

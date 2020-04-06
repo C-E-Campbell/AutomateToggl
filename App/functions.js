@@ -17,6 +17,9 @@ const newTogglProject = {
 };
 
 module.exports = {
+  updateToggl() {
+    this.getAllProjects();
+  },
   parseOpenAirCsv() {
     fs.createReadStream(filePath)
       .on("error", () => {
@@ -78,7 +81,7 @@ module.exports = {
               wid: 4131377,
               cid: `${project.clientID}`,
               active: true,
-              color: 1,
+              color: 5,
             },
           },
           {
@@ -116,9 +119,7 @@ module.exports = {
           }
         )
         .then((res) => {})
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((err) => {});
     });
   },
   archiveAllProjects() {
