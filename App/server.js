@@ -4,12 +4,15 @@ const lib = require("./functions");
 
 const app = express();
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 // cron.schedule("0 8,12,16 * * 1-5", function() {
-//   lib.parseOpenAirCsv();
+
 // });
 
+lib.parseOpenAirCsv();
+lib.getAllProjects();
+
 app.listen(8786, () => {
-  console.log("App is running on port 8786")
+  console.log("App is running on port 8786");
 });
