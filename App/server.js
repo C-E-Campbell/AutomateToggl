@@ -7,7 +7,6 @@ const app = express();
 app.use(express.static("public"));
 
 // cron.schedule("0 8,12,16 * * 1-5", function() {
-
 // });
 
 lib.parseOpenAirCsv();
