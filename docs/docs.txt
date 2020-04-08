@@ -1,5 +1,5 @@
 
-.env file (AutomateToggl/.env): variable meanings 
+.env file: variable meanings 
 
 wid = toggl workspace id
 apiKeyFromToggl = must be an admin's api key for the workspace mentioned above. 
