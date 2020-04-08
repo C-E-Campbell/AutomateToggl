@@ -8,13 +8,14 @@ const app = express();
 
 app.use(express.static("public"));
 
-// lib.parseOpenAirCsv();
-// lib.updateToggl();
-
 const watcher = chokidar.watch(`${process.env.filepath}`);
 
-watcher.on("all", function () {
+watcher.on("change", function () {
   console.log("Data Changed... Running UpdateToggl App");
+  setTimeout(() => {
+    lib.parseOpenAirCsv();
+    lib.updateToggl();
+  }, 10000);
 });
 
 app.listen(8786, () => {

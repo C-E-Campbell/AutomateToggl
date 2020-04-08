@@ -1,1 +1,20 @@
-test
+
+.env file (AutomateToggl/.env): variable meanings 
+
+wid = toggl workspace id
+apiKeyFromToggl = must be an admin's api key for the workspace mentioned above. 
+apiPassFromToggl = password for authorization, shouldnt need to change.
+filepath = filepath where the openair csv lives
+PORT = port where express server will run
+
+|------------------------------------------------------------------------------------------------------------------
+
+Node Packages used and quick description:
+
+axios: for http requests to toggl
+chokidar: for file watching the csv and re-running the app on csv changes
+csv-parser: parsing the open air csv into an array of objects
+dotenv: hiding important data about our app in env variables
+express: runs our server
+
+|------------------------------------------------------------------------------------------------------------------
