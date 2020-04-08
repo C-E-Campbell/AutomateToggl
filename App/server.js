@@ -1,17 +1,22 @@
+const { resolve } = require("path");
+require("dotenv").config({ path: resolve(__dirname, "../.env") });
 const express = require("express");
-const cron = require("node-cron");
 const lib = require("./functions");
+const chokidar = require("chokidar");
 
 const app = express();
 
 app.use(express.static("public"));
 
-// cron.schedule("0 8,12,16 * * 1-5", function() {
-// });
+// lib.parseOpenAirCsv();
+// lib.updateToggl();
 
-lib.parseOpenAirCsv();
-lib.updateToggl();
+const watcher = chokidar.watch(`${process.env.filepath}`);
+
+watcher.on("all", function () {
+  console.log("Data Changed... Running UpdateToggl App");
+});
 
 app.listen(8786, () => {
-  console.log("App is running on port 8786");
+  console.log(`App is running on port ${process.env.PORT}`);
 });

@@ -1,9 +1,10 @@
+const { resolve } = require("path");
+require("dotenv").config({ path: resolve(__dirname, "../.env") });
 const fs = require("fs");
 const csv = require("csv-parser");
-const filePath = "../CSV_Goes_Here/test.csv";
+const filePath = `${process.env.filepath}`;
 const axios = require("axios");
 
-// encapsulate these in an obj, use getters/setters
 let csvData = [];
 let newList = [];
 let projectData = [];
@@ -33,12 +34,15 @@ module.exports = {
   },
   getAllProjects() {
     axios
-      .get("https://www.toggl.com/api/v8/workspaces/4131377/projects", {
-        auth: {
-          username: "92b7f642cb009d898a8d13b0156b794e",
-          password: "api_token",
-        },
-      })
+      .get(
+        `https://www.toggl.com/api/v8/workspaces/${process.env.wid}/projects`,
+        {
+          auth: {
+            username: `${process.env.apiKeyFromToggl}`,
+            password: `${process.env.apiPassFromToggl}`,
+          },
+        }
+      )
       .then((res) => {
         projectData = res.data;
         createThese = res.data;
@@ -64,8 +68,9 @@ module.exports = {
           const project = Object.create(newTogglProject);
           project.name = csv.Task;
           project.cid = client.id;
-          project.wid = 4131377;
+          project.wid = `${process.env.wid}`;
           project.active = true;
+          project.is_private = false;
           newList.push(project);
         }
       });
@@ -78,16 +83,16 @@ module.exports = {
           {
             project: {
               name: `${project.name}`,
-              wid: 4131377,
+              wid: `${process.env.wid}`,
               cid: `${project.clientID}`,
               active: true,
-              color: 5,
+              color: 1,
             },
           },
           {
             auth: {
-              username: "92b7f642cb009d898a8d13b0156b794e",
-              password: "api_token",
+              username: `${process.env.apiKeyFromToggl}`,
+              password: `${process.env.apiPassFromToggl}`,
             },
           }
         )
@@ -113,12 +118,14 @@ module.exports = {
           },
           {
             auth: {
-              username: "92b7f642cb009d898a8d13b0156b794e",
-              password: "api_token",
+              username: `${process.env.apiKeyFromToggl}`,
+              password: `${process.env.apiPassFromToggl}`,
             },
           }
         )
-        .then((res) => {})
+        .then((res) => {
+          console.log("Update Toggl Complete");
+        })
         .catch((err) => {});
     });
   },
@@ -131,8 +138,8 @@ module.exports = {
             { project: { active: false } },
             {
               auth: {
-                username: "92b7f642cb009d898a8d13b0156b794e",
-                password: "api_token",
+                username: `${process.env.apiKeyFromToggl}`,
+                password: `${process.env.apiPassFromToggl}`,
               },
             }
           )
@@ -146,12 +153,15 @@ module.exports = {
   },
   getAllClients() {
     axios
-      .get("https://www.toggl.com/api/v8/workspaces/4131377/clients", {
-        auth: {
-          username: "92b7f642cb009d898a8d13b0156b794e",
-          password: "api_token",
-        },
-      })
+      .get(
+        `https://www.toggl.com/api/v8/workspaces/ ${process.env.wid}/clients`,
+        {
+          auth: {
+            username: `${process.env.apiKeyFromToggl}`,
+            password: `${process.env.apiPassFromToggl}`,
+          },
+        }
+      )
       .then((res) => {
         clientData = res.data;
         res.data.forEach((client) => {
